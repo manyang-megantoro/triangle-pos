@@ -118,7 +118,7 @@
         });
         FilePond.setOptions({
             server: {
-                url: "{{ route('filepond.upload') }}",
+                url: "{{ route('filepond.upload','image') }}",
                 headers: {
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 }

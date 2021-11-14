@@ -9,13 +9,13 @@
         FilePondPluginFileValidateSize,
         FilePondPluginFileValidateType
     );
-    const fileElement = document.querySelector('input[id="image"]');
+    const fileElement = document.querySelector('input[id="siteLogo"]');
     const pond = FilePond.create(fileElement, {
         acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
     });
     FilePond.setOptions({
         server: {
-            process: "{{ route('filepond.upload','image') }}",
+            process: "{{ route('filepond.upload','siteLogo') }}",
             revert: "{{ route('filepond.delete') }}",
             headers: {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
