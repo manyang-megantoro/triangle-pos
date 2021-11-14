@@ -323,3 +323,4 @@
         @endcan
     </li>
 @endcan
+@hook('mainMenu')
