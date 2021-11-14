@@ -2,6 +2,7 @@
 
 namespace Modules\Importer\Providers;
 
+use CoInvestor\LaraHook\Facades\Hook;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -28,6 +29,9 @@ class ImporterServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        Hook::listen('template.mainMenu', function ($callback, $output, $variables) {
+            return view('importer::main-menu');
+        });
     }
 
     /**
