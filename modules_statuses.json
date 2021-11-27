@@ -14,5 +14,6 @@
     "PurchasesReturn": true,
     "Quotation": true,
     "Reports": true,
-    "Importer": true
+    "Importer": true,
+    "Migrator": true
 }

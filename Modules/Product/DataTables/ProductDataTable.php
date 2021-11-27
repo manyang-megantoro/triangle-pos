@@ -15,7 +15,7 @@ class ProductDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)->with('category')
+            ->eloquent($query)->with(['category','supplier'])
             ->addColumn('action', function ($data) {
                 return view('product::products.partials.actions', compact('data'));
             })
@@ -34,7 +34,7 @@ class ProductDataTable extends DataTable
 
     public function query(Product $model)
     {
-        return $model->newQuery()->with('category');
+        return $model->newQuery()->with(['category','supplier']);
     }
 
     public function html()
@@ -84,6 +84,10 @@ class ProductDataTable extends DataTable
 
             Column::make('category.category_name')
                 ->title('Category')
+                ->className('text-center align-middle'),
+
+            Column::make('supplier.supplier_name')
+                ->title('Supplier')
                 ->className('text-center align-middle'),
 
             Column::computed('action')
