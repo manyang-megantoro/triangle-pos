@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row mb-3">
         <div class="col-12 d-flex justify-content-center">
-            <img width="200" src="{{ asset('images/logo-dark.png') }}" alt="Logo">
+            <img width="200" src="{{ asset(Illuminate\Support\Facades\DB::select('select site_logo from settings where id = ?', [1])[0]->site_logo) }}" alt="Logo">
         </div>
     </div>
     <div class="row justify-content-center">
