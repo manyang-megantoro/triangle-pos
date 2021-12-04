@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['middleware' => 'auth'], function () {
     //Profit Loss Report
     Route::get('/profit-loss-report', 'ReportsController@profitLossReport')
@@ -21,6 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Sales Report
     Route::get('/sales-report', 'ReportsController@salesReport')
         ->name('sales-report.index');
+    //Sales Report
+    Route::get('/sales-category-report', 'ReportsController@salesCategoryReport')
+        ->name('sales-category-report.index');
     //Purchases Report
     Route::get('/purchases-report', 'ReportsController@purchasesReport')
         ->name('purchases-report.index');
