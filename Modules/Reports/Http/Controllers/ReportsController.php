@@ -27,6 +27,12 @@ class ReportsController extends Controller
         return view('reports::sales.index');
     }
 
+    public function salesCategoryReport() {
+        abort_if(Gate::denies('access_reports'), 403);
+
+        return view('reports::sales-category.index');
+    }
+
     public function purchasesReport() {
         abort_if(Gate::denies('access_reports'), 403);
 
