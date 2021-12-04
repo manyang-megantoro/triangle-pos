@@ -12,13 +12,13 @@ use Modules\Upload\Entities\Upload;
 class UploadController extends Controller
 {
 
-    public function filepondUpload(Request $request) {
+    public function filepondUpload(Request $request,$name) {
         $request->validate([
-            'image' => 'required|image|mimes:png,jpeg,jpg'
+            $name => 'required|image|mimes:png,jpeg,jpg'
         ]);
 
-        if ($request->hasFile('image')) {
-            $uploaded_file = $request->file('image');
+        if ($request->hasFile($name)) {
+            $uploaded_file = $request->file($name);
             $filename = now()->timestamp . '.' . $uploaded_file->getClientOriginalExtension();
             $folder = uniqid() . '-' . now()->timestamp;
 

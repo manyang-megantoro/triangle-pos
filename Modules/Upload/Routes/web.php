@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dropzone/upload', 'UploadController@dropzoneUpload')->name('dropzone.upload');
     Route::post('/dropzone/delete', 'UploadController@dropzoneDelete')->name('dropzone.delete');
     //Filepond
-    Route::post('/filepond/upload', 'UploadController@filepondUpload')->name('filepond.upload');
+    Route::post('/filepond/upload/{name}', 'UploadController@filepondUpload')->name('filepond.upload');
     Route::delete('/filepond/delete', 'UploadController@filepondDelete')->name('filepond.delete');
 
 });

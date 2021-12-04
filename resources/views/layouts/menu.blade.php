@@ -272,7 +272,15 @@
         </ul>
     </li>
 @endcan
-
+<li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('module.*') ? 'c-show' : '' }}">
+    @can('access_module')
+        <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+            <i class="c-sidebar-nav-icon bi bi-inboxes-fill" style="line-height: 1;"></i> Module
+        </a>
+    @endcan
+    @hook('moduleMenu', true)
+    @endhook
+</li>
 @can('access_user_management')
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown {{ request()->routeIs('roles*') ? 'c-show' : '' }}">
         <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">

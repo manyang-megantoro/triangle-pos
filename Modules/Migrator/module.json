@@ -1,0 +1,13 @@
+{
+    "name": "Migrator",
+    "alias": "migrator",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Migrator\\Providers\\MigratorServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

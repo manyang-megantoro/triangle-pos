@@ -15,7 +15,7 @@
     });
     FilePond.setOptions({
         server: {
-            process: "{{ route('filepond.upload') }}",
+            process: "{{ route('filepond.upload','image') }}",
             revert: "{{ route('filepond.delete') }}",
             headers: {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"

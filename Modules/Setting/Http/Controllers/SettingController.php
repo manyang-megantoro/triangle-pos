@@ -8,9 +8,11 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Http\Requests\StoreSettingsRequest;
 use Modules\Setting\Http\Requests\StoreSmtpSettingsRequest;
+use Modules\Upload\Entities\Upload;
 
 class SettingController extends Controller
 {
@@ -25,7 +27,16 @@ class SettingController extends Controller
 
 
     public function update(StoreSettingsRequest $request) {
-        Setting::firstOrFail()->update([
+        $siteLogo = null;
+        if ($request->has('siteLogo')) {
+            $tempFile = Upload::where('folder', $request->siteLogo)->first();
+            //copy file
+            Storage::copy('temp/' . $request->siteLogo . '/' . $tempFile->filename, 'public/' . $request->siteLogo . '/' . $tempFile->filename);
+            $logo_url = Storage::url($request->siteLogo . '/' . $tempFile->filename);
+            Storage::deleteDirectory('temp/' . $request->siteLogo);
+            $tempFile->delete();
+        }
+        $settings = tap(Setting::firstOrFail())->update([
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,
             'company_phone' => $request->company_phone,
@@ -33,8 +44,21 @@ class SettingController extends Controller
             'company_address' => $request->company_address,
             'default_currency_id' => $request->default_currency_id,
             'default_currency_position' => $request->default_currency_position,
-            'footer_text' => $request->footer_text
+            'footer_text' => $request->footer_text,
+            'site_logo' => $logo_url
         ]);
+
+
+        // if ($request->has('image')) {
+        //     $tempFile = Upload::where('folder', $request->image)->first();
+
+        //     if ($tempFile) {
+        //         $user->addMedia(Storage::path('public/temp/' . $request->image . '/' . $tempFile->filename))->toMediaCollection('avatars');
+
+        //         Storage::deleteDirectory('public/temp/' . $request->image);
+        //         $tempFile->delete();
+        //     }
+        // }
 
         cache()->forget('settings');
 

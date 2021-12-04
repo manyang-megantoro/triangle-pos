@@ -4,6 +4,7 @@ namespace Modules\Product\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\People\Entities\Supplier;
 use Modules\Product\Notifications\NotifyQuantityAlert;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -20,6 +21,10 @@ class Product extends Model implements HasMedia
 
     public function category() {
         return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function supplier() {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
     public function registerMediaCollections(): void {

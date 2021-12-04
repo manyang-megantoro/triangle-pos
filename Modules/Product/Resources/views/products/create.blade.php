@@ -25,16 +25,31 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="product_name">Product Name <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="product_name" required value="{{ old('product_name') }}">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="product_code">Code <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="product_code" required value="{{ old('product_code') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="barcode_symbology">Barcode Symbology <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="product_barcode_symbology" id="barcode_symbology" required>
+                                            <option value="" selected disabled>Select Symbology</option>
+                                            <option value="C128">Code 128</option>
+                                            <option value="C39">Code 39</option>
+                                            <option value="UPCA">UPC-A</option>
+                                            <option value="UPCE">UPC-E</option>
+                                            <option value="EAN13">EAN-13</option><option value="EAN8">EAN-8</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -53,14 +68,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="barcode_symbology">Barcode Symbology <span class="text-danger">*</span></label>
-                                        <select class="form-control" name="product_barcode_symbology" id="barcode_symbology" required>
-                                            <option value="" selected disabled>Select Symbology</option>
-                                            <option value="C128">Code 128</option>
-                                            <option value="C39">Code 39</option>
-                                            <option value="UPCA">UPC-A</option>
-                                            <option value="UPCE">UPC-E</option>
-                                            <option value="EAN13">EAN-13</option><option value="EAN8">EAN-8</option>
+                                        <label for="supplier_id">supplier <span class="text-danger">*</span></label>
+                                        <select class="form-control" name="supplier_id" id="supplier_id" required>
+                                            <option value="" selected disabled>Select Supplier</option>
+                                            @foreach(\Modules\People\Entities\Supplier::all() as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->supplier_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

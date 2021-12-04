@@ -2,6 +2,10 @@
 
 @section('title', 'Edit Settings')
 
+@section('third_party_stylesheets')
+    @include('includes.filepond-css')
+@endsection
+
 @section('breadcrumb')
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
@@ -85,7 +89,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="form-row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="siteLogo">Site Logo <span class="text-danger">*</span></label>
+                                        <img style="width: auto;height: 100px;" class="d-block mx-auto img-fluid mb-2" src="{{ $settings->site_logo != null ? $settings->site_logo : asset('images/logo.png') }}" alt="Profile site_logo">
+                                        <input id="siteLogo" type="file" name="siteLogo" data-max-file-size="500KB">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group mb-0">
                                 <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i> Save Changes</button>
                             </div>
@@ -186,4 +198,8 @@
         </div>
     </div>
 @endsection
+
+@push('page_scripts')
+    @include('includes.filepond-setting-js')
+@endpush
 
