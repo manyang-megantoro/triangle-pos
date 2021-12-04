@@ -28,7 +28,8 @@ class SettingController extends Controller
 
     public function update(StoreSettingsRequest $request) {
         $siteLogo = null;
-        if ($request->has('siteLogo')) {
+        $logo_url = '';
+        if ($request->has('siteLogo') && !is_null($request->siteLogo)) {
             $tempFile = Upload::where('folder', $request->siteLogo)->first();
             //copy file
             Storage::copy('temp/' . $request->siteLogo . '/' . $tempFile->filename, 'public/' . $request->siteLogo . '/' . $tempFile->filename);
@@ -36,7 +37,8 @@ class SettingController extends Controller
             Storage::deleteDirectory('temp/' . $request->siteLogo);
             $tempFile->delete();
         }
-        $settings = tap(Setting::firstOrFail())->update([
+        
+        $data_setting = [
             'company_name' => $request->company_name,
             'company_email' => $request->company_email,
             'company_phone' => $request->company_phone,
@@ -45,8 +47,13 @@ class SettingController extends Controller
             'default_currency_id' => $request->default_currency_id,
             'default_currency_position' => $request->default_currency_position,
             'footer_text' => $request->footer_text,
-            'site_logo' => $logo_url
-        ]);
+        ];
+        
+        if($logo_url != ''){
+            $data_setting['site_logo'] = $logo_url;
+        }
+        
+        $settings = tap(Setting::firstOrFail())->update($data_setting);
 
 
         // if ($request->has('image')) {

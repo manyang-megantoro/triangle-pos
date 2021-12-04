@@ -10,3 +10,4 @@
 [04-Dec-2021 11:31:46 Asia/Jakarta] PHP Fatal error:  require(): Failed opening required '/home/tokoshaf/public_html/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/tokoshaf/public_html/public/index.php on line 34
 [04-Dec-2021 11:31:47 Asia/Jakarta] PHP Warning:  require(/home/tokoshaf/public_html/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/tokoshaf/public_html/public/index.php on line 34
 [04-Dec-2021 11:31:47 Asia/Jakarta] PHP Fatal error:  require(): Failed opening required '/home/tokoshaf/public_html/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/tokoshaf/public_html/public/index.php on line 34
+[04-Dec-2021 17:57:17 Asia/Dhaka] PHP Fatal error:  Cannot use ::class with dynamic class name in /home/tokoshaf/public_html/Modules/Migrator/Http/Controllers/MigratorController.php on line 41
